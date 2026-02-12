@@ -1,0 +1,49 @@
+h1{
+    font-family: sans-serif;
+    color: rgb(0, 0, 0);
+
+}
+
+h2{
+        font-family: sans-serif;
+        font-size: x-large;
+        text-decoration:underline;
+        text-indent: 0px;
+
+}
+
+h3{
+    font-family: sans-serif;
+    font-size: 21px;
+    text-decoration:none;
+    text-indent: 0px;
+
+}
+
+p{
+    font-family: serif;
+    font-size: 19px;
+    text-indent: 0px;
+}
+
+hr.thick{
+    border-top: 3px solid;
+}
+
+img{
+    height: 180px;;
+    margin-left: 50px;
+}
+
+dt{
+    margin-left: 50px;
+    font-size: larger;
+    font-weight: 600;
+}
+
+dd{
+    margin-left: 80px;
+    font-size: large;
+    padding: 6px;
+}
+

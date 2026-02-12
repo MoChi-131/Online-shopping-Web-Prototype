@@ -1,0 +1,52 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+</head>
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}Detail{% endblock %}
+
+<body>
+    {% block navbar %}
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+                <a class="navbar-brand" href="{{ url_for('basket', item_id= 0, update = 0) }}">Cart</a>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block content %}
+        <div class="container">
+            <div class="row">
+                <h1>{{item.name}}</h1>
+                <br>
+                <img src="{{ url_for('static', filename=item.picture + '.jpg') }}"style="height: 500px; object-fit: cover;">
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Cost:£{{item.price}}</h2>
+                </div>
+                <div class="col-md-4">
+                    <h2>Type:{{item.type}}</h2>
+                </div>
+                <div class="col-md-1">
+                    {{ wtf.quick_form(form) }}
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        {% if submit %}
+                            <h3>Add Successful!</h3>
+                        {% endif %}
+                    </div>    
+                </div>
+            </div>
+            <div class="row">
+                <br>
+                <p>{{item.detail}}</p>
+            </div>
+        </div>
+    {% endblock %}
+</body>

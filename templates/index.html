@@ -1,0 +1,77 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+</head>
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}Home{% endblock %}
+
+<body>
+    {% block navbar %}
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+                <a class="navbar-brand" href="{{ url_for('basket', item_id=0, update = 0) }}">Cart</a>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block content %}
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Home</h1>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ url_for('static', filename='AD.png')}}" >
+                </div>
+            </div>
+
+             <hr class="my-4 thick">
+
+                <h2>Popular products</h2>
+                <h3>Sort</h3>
+                {{ wtf.quick_form(sort) }}
+
+             <br>
+             <br>
+             <br>
+
+                {% for item in items %}
+                <div class="row">
+                    <div class="col-md-5">
+                        <a href="{{ url_for('detail', id=item.id) }}">
+                        <img src="{{ url_for('static', filename=item.picture + '.jpg') }}"></a>
+                    </div>
+                    <div class="col-md-7">
+                        <a href="{{ url_for('detail', id=item.id) }}"><h3>{{item.name}}</h3></a>
+                        <p>Price: {{item.price}}</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                {% endfor %}
+
+                <br>
+                <br>
+                <hr class="my-4 thick">
+                <br>
+                <br>
+
+                <img src="{{ url_for('static', filename='partnerAD.jpg')}}"  >
+                <img src="{{ url_for('static', filename='partnerAD2.png')}}"  >
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+
+
+
+        </div>
+    {% endblock %}
+</body>

@@ -1,0 +1,91 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+</head>
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}Home{% endblock %}
+
+<body>
+    {% block navbar %}
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+                <a class="navbar-brand" href="{{ url_for('basket', item_id=0, update = 0) }}">Cart</a>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block content %}
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Basket</h1>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ url_for('static', filename='AD.png')}}" >
+                </div>
+            </div>
+
+        <hr class="my-4 thick">
+
+        <h2>Your items</h2>
+        <br>
+        <br>
+        <br>
+         {% if not condition %}
+             <h1>Empty</h1>      
+         {% endif %}
+
+         {% if condition %}
+            {% for item in items %}
+                {% if item[1]>0 %}
+                <div class="row">
+                    <div class="col-md-5">
+                        <a href="{{ url_for('detail', id=item[0].id) }}">
+                        <img src="{{ url_for('static', filename=item[0].picture + '.jpg') }}"></a>
+                    </div>
+                    <div class="col-md-7">
+                        <h3>{{ item[0].name }}</h3>
+                        <p>Price: {{ item[0].price }}</p>
+                        <p>Quantity: {{ item[1] }}</p>
+                    </div>
+                    <div class="col-md-1">
+                        <form method="post" action="{{ url_for('basket', item_id=item[0].id, update=1) }}">
+                            <div class="form-group">
+                                <input type="number" name="quantity" class="form-control" id="quantity" value="{{ form.quantity.data }}" min="0">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <h2>Total:{{sum}}</h2>
+                    <a href="{{ url_for('payment', sum=sum )}}"><button type="button" class="btn btn-primary btn-lg">Check Out</button></a>
+                </div>
+            </div>
+        {% endif %}
+                <br>
+                <br>
+                <hr class="my-4 thick">
+                <br>
+                <br>
+                <img src="{{ url_for('static', filename='partnerAD.jpg')}}"  >
+                <img src="{{ url_for('static', filename='partnerAD2.png')}}"  >
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+
+        </div>
+    {% endblock %}
+</body>
