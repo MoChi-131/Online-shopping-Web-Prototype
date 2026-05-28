@@ -187,4 +187,3 @@ The application will start at http://localhost:5000
 ---
 
 **Author**: MoChi-131  
-**Repository**: https://github.com/MoChi-131/Online-shopping-Web-Prototype
